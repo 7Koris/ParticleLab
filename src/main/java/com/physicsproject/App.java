@@ -14,7 +14,7 @@ public class App extends Application {
         return new StackPane(new Text("Hello World"));
     }
 
-
+    @Override
     public void start(Stage stage) {
         stage.setScene(new Scene(createContent(), 300, 300));
         stage.show();
