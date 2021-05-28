@@ -3,7 +3,7 @@ package com.physicsproject;
 import java.lang.Math;
 
 public class Vector {
-    private double[] components = {0, 0};
+    public double[] components = {0, 0};
 
     public Vector(double[] components) {
         this.components = components;
@@ -16,6 +16,10 @@ public class Vector {
 
     public double[] getComponents() {
         return this.components;
+    }
+
+    public void setComponents(double[] components) {
+        this.components = components;
     }
 
     public double getMagnitude() {
