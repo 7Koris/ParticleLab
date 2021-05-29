@@ -12,13 +12,6 @@
         },
         {
             "type": "java",
-            "name": "Launch App",
-            "request": "launch",
-            "mainClass": "com.physicsproject.App",
-            "projectName": "physproject"
-        },
-        {
-            "type": "java",
             "name": "Launch Launch",
             "request": "launch",
             "mainClass": "com.physicsproject.Launch",
