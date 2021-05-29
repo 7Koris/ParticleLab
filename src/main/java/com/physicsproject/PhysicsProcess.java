@@ -11,8 +11,9 @@ public class PhysicsProcess extends AnimationTimer {
 
     static ArrayList<Process> processes = new ArrayList<Process>();
     static PhysicsProcess mainProcess = new PhysicsProcess();
-    static double deltaTime = System.currentTimeMillis();
-    static long pastTimeMillis = System.currentTimeMillis();
+    static double deltaTime = System.nanoTime();
+    static long pastTimeNanos = System.nanoTime();
+    static final double g = 980;
 
     PhysicsProcess(Process process) {
         processes.add(process);
@@ -31,12 +32,12 @@ public class PhysicsProcess extends AnimationTimer {
     @Override
     public void handle(long now) {
 
-        deltaTime = (double) Math.pow(10, -3) * ((double)System.currentTimeMillis() - (double) pastTimeMillis);
-        System.out.println(now);
+        deltaTime = (double) Math.pow(10, -9) * ((double)now - (double) pastTimeNanos);
+
         for (Process process : processes) {
             process.start();
         }
 
-        pastTimeMillis = System.currentTimeMillis();
+        pastTimeNanos = now;
     }
 }
