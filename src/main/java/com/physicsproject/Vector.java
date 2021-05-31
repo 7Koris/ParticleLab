@@ -34,6 +34,10 @@ public class Vector {
         return Math.toDegrees(Math.atan2(components[0], components[1]));
     }
 
+    public static Vector multiplyVector(Vector vect, double multiplier) {
+        return new Vector(new double[] {vect.components[0] * multiplier, vect.components[1] * multiplier});
+    }
+
     public static Vector addVectors(Vector vect1, Vector vect2) {
         double[] vect1Components = vect1.getComponents();
         double[] vect2Components = vect2.getComponents();
