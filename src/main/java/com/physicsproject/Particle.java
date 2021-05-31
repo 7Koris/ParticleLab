@@ -256,8 +256,8 @@ public class Particle extends PhysicsObject{
             this.velocityVector.components[1] += (100 * this.accelerationVector.components[1] * PhysicsProcess.deltaTime);
 
             if (AppController.dragEnabled) {
-                this.velocityVector.components[0] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[0] * 100;
-                this.velocityVector.components[1] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[1] * 100;
+                this.velocityVector.components[0] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[0];
+                this.velocityVector.components[1] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[1];
             }
 
             this.position[0] += (this.velocityVector.components[0] * (double) PhysicsProcess.deltaTime);
