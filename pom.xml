@@ -18,6 +18,20 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-archetype-fxml</artifactId>
+            <version>0.0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.1</version>
+        </dependency>
+        
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
