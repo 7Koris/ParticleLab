@@ -9,6 +9,12 @@ https://stackoverflow.com/questions/52653836/maven-shade-javafx-runtime-componen
 https://fxdocs.github.io/docs/html5/ - JavaFX documentation.
 https://www.tutorialspoint.com/javafx/javafx_event_handling.htm - events
 https://www.genuinecoder.com/javafx-get-screen-size-of-all-connected-monitors/ - screen size
+https://docs.oracle.com/javafx/2/ui_controls/table-view.htm - tableview
+https://www.youtube.com/watch?v=Z1W4E2d4Yxo - Getting started with scenebuilder
+https://docs.oracle.com/javafx/2/get_started/fxml_tutorial.htm - Using FXML
+
+
+
 
 
 
