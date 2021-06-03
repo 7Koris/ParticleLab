@@ -36,6 +36,7 @@ public class App extends Application {
         stage.setTitle("Particle Lab");
         stage.setResizable (false);
         stage.show();
+        
         screenSize = Screen.getPrimary().getBounds();
 
         PhysicsProcess.startProcessing();

@@ -39,7 +39,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -66,10 +65,7 @@
       <children>
             <Pane layoutX="759.0" prefHeight="514.0" prefWidth="200.0" style="-fx-background-color: #dcdcdc;">
                <children>
-                  <CheckBox fx:id="dragCheckbox" layoutX="27.0" layoutY="414.0" mnemonicParsing="false" onAction="#toggleDrag" text="Friction" />
                   <ChoiceBox fx:id="toolSelect" layoutX="25.0" layoutY="23.0" prefWidth="150.0" />
-                  <Label fx:id="dragCoeffLabel" layoutX="100.0" layoutY="416.0" text="Coefficient" />
-                  <Slider fx:id="dragSlider" layoutX="27.0" layoutY="440.0" max="1.0" onMouseDragged="#dragSlided" />
                   <CheckBox fx:id="pausedCheckBox" layoutX="27.0" layoutY="391.0" mnemonicParsing="false" onAction="#togglePause" text="Paused" />
                   <Label layoutX="84.0" layoutY="6.0" text="Tool" />
                   <Label fx:id="timeLabel" layoutX="11.0" layoutY="311.0" text="Time: " />

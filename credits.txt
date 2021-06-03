@@ -2,7 +2,7 @@ Class: AP Physics 1
 Author: Kamran Haq
 Year: 2021
 
-References:
+Sources:
 http://youtube.com/watch?v=LPzyNOHY3A4 - Collision algorithm
 https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835 - JavaFX gameloop
 https://stackoverflow.com/questions/52653836/maven-shade-javafx-runtime-components-are-missing - Running JavaFX

@@ -9,7 +9,7 @@ public class Vector {
         this.components = components;
     }
 
-    public Vector(float magnitude, float angleRadians) {
+    public Vector(double magnitude, double angleRadians) {
         this.components[0] = magnitude * Math.cos(angleRadians);
         this.components[1] = magnitude * Math.sin(angleRadians);
     }

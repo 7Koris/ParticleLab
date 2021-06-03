@@ -50,8 +50,6 @@ public class Particle extends PhysicsObject{
         idCount++;
         this.color = color;
 
-        
-
         physicsProcess = new PhysicsProcess(this, id);
         circle = new Circle();
 
@@ -218,8 +216,6 @@ public class Particle extends PhysicsObject{
         return simpleY.get();
     }
 
-    
-
     public void updateParticle(double ax, double ay, double vx, double vy, double px, double py) {
         this.accelerationVector.components = new double[] {ax, ay};
         this.velocityVector.components = new double[] {vx, vy};
@@ -229,7 +225,6 @@ public class Particle extends PhysicsObject{
         this.idLabel.setTranslateX(this.position[0]-3);
         this.idLabel.setTranslateY(this.position[1] - this.radius - 15);
     }
-
 
     @Override
     public void start() {
@@ -249,67 +244,10 @@ public class Particle extends PhysicsObject{
                 fy = 0;
             }
 
-            fg = PhysicsProcess.g * PhysicsProcess.gravityMultiplier;
-            this.velocityVector.components[1] += fg * PhysicsProcess.deltaTime;
-
-            this.velocityVector.components[0] += (100 * this.accelerationVector.components[0] * PhysicsProcess.deltaTime);
-            this.velocityVector.components[1] += (100 * this.accelerationVector.components[1] * PhysicsProcess.deltaTime);
-
-            if (AppController.dragEnabled) {
-                this.velocityVector.components[0] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[0];
-                this.velocityVector.components[1] += -1 * Double.parseDouble(AppController.mainController.dragCoeffLabel.getText()) * PhysicsProcess.deltaTime * mass * velocityVector.components[1];
-            }
-
-            this.position[0] += (this.velocityVector.components[0] * (double) PhysicsProcess.deltaTime);
-            this.position[1] += (this.velocityVector.components[1] * (double) PhysicsProcess.deltaTime);
-            
-            //Particle collision algorithm was taken from https://www.youtube.com/watch?v=LPzyNOHY3A4.
-            for (Particle particle : particles) {
-                if (particle != this && !AppController.paused && particle!= null && this != null) {
-                    double radialDistance = Math.sqrt(Math.pow(this.position[0]-particle.position[0], 2) + Math.pow(this.position[1] - particle.position[1], 2));
-                    double distance = 0.5*(radialDistance - (this.radius + particle.radius));
-                    
-                    if (distance <= 0) {
-                        
-                        this.position[0] -= (distance) * (this.position[0] - particle.position[0]) / (radialDistance);
-                        this.position[1] -= (distance) * (this.position[1] - particle.position[1]) / (radialDistance);
-
-                        particle.position[0] += (distance) * (this.position[0] - particle.position[0]) / (radialDistance);
-                        particle.position[1] += (distance) * (this.position[1] - particle.position[1]) / (radialDistance);
-
-                        radialDistance = Math.sqrt(Math.pow(this.position[0]-particle.position[0], 2) + Math.pow(this.position[1] - particle.position[1], 2));
-                        
-                        double normx = (particle.position[0] - this.position[0]) / radialDistance;
-                        double normy = (particle.position[1] - this.position[1]) / radialDistance;
-
-                        double tanx = -normy;
-                        double tany = normx;
-
-                        double dotptan1 = this.velocityVector.components[0] * tanx + this.velocityVector.components[1] * tany;
-                        double dotptan2 = particle.velocityVector.components[0] * tanx + particle.velocityVector.components[1] * tany;
-
-                        double dotpnorm1 = this.velocityVector.components[0] * normx + this.velocityVector.components[1] * normy;
-                        double dotpnorm2 = particle.velocityVector.components[0] * normx + particle.velocityVector.components[1] * normy;
-
-                        double m1 = (dotpnorm1 * (this.mass - particle.mass) + 2 * particle.mass*dotpnorm2) / (this.mass + particle.mass);
-                        double m2 = (dotpnorm2 * (particle.mass - this.mass) + 2 * this.mass*dotpnorm1) / (this.mass + particle.mass);
-
-                        this.velocityVector.components[0] = tanx * dotptan1 + normx * m1;
-                        this.velocityVector.components[1] = tany * dotptan1 + normy * m1;
-
-                        particle.velocityVector.components[0] = tanx * dotptan2 + normx * m2;
-                        particle.velocityVector.components[1] = tany * dotptan2 + normy * m2;
-                    }
-                }
-            }
-
-            
-
             double height = 379;
             double width = 752;
 
             //Wall Collisions
-
             if (!AppController.disableBound) {
                 if  (this.position[0] + radius >= width) {
                     this.position[0] = width-radius;
@@ -337,9 +275,53 @@ public class Particle extends PhysicsObject{
             circle.setCenterY((float)this.position[1]);
             this.idLabel.setTranslateX(this.position[0]-3);
             this.idLabel.setTranslateY(this.position[1] - this.radius - 15);
+        
 
+            fg = PhysicsProcess.g * PhysicsProcess.gravityMultiplier;
+            this.velocityVector.components[1] += fg * PhysicsProcess.deltaTime;
+
+            this.velocityVector.components[0] += (100 * this.accelerationVector.components[0] * PhysicsProcess.deltaTime);
+            this.velocityVector.components[1] += (100 * this.accelerationVector.components[1] * PhysicsProcess.deltaTime);
+
+            this.position[0] += (this.velocityVector.components[0] * (double) PhysicsProcess.deltaTime);
+            this.position[1] += (this.velocityVector.components[1] * (double) PhysicsProcess.deltaTime);
             
-            
+            //Particle collision algorithm was taken from https://www.youtube.com/watch?v=LPzyNOHY3A4. This algorithm is not my original work.
+            for (Particle particle : particles) {
+                if (particle != this && !AppController.paused && particle!= null && this != null) {
+
+                    double radialDistance = Math.sqrt(Math.pow(this.position[0]-particle.position[0], 2) + Math.pow(this.position[1] - particle.position[1], 2));
+                    double distance = 0.5*(radialDistance - (this.radius + particle.radius));
+                    
+                    if (distance <= 0) {
+                        this.position[0] -= (distance) * (this.position[0] - particle.position[0]) / (radialDistance);
+                        this.position[1] -= (distance) * (this.position[1] - particle.position[1]) / (radialDistance);
+
+                        particle.position[0] += (distance) * (this.position[0] - particle.position[0]) / (radialDistance);
+                        particle.position[1] += (distance) * (this.position[1] - particle.position[1]) / (radialDistance);
+
+                        radialDistance = Math.sqrt(Math.pow(this.position[0]-particle.position[0], 2) + Math.pow(this.position[1] - particle.position[1], 2));
+                        
+                        double normx = (particle.position[0] - this.position[0]) / radialDistance;
+                        double normy = (particle.position[1] - this.position[1]) / radialDistance;
+
+                        double tanx = -normy;
+                        double tany = normx;
+
+                        double dotptan1 = this.velocityVector.components[0] * tanx + this.velocityVector.components[1] * tany;
+                        double dotptan2 = particle.velocityVector.components[0] * tanx + particle.velocityVector.components[1] * tany;
+
+                        double dotpnorm1 = this.velocityVector.components[0] * normx + this.velocityVector.components[1] * normy;
+                        double dotpnorm2 = particle.velocityVector.components[0] * normx + particle.velocityVector.components[1] * normy;
+
+                        this.velocityVector.components[0] = tanx * dotptan1 + normx * ((dotpnorm1 * (this.mass - particle.mass) + 2 * particle.mass*dotpnorm2) / (this.mass + particle.mass));
+                        this.velocityVector.components[1] = tany * dotptan1 + normy * ((dotpnorm1 * (this.mass - particle.mass) + 2 * particle.mass*dotpnorm2) / (this.mass + particle.mass));
+
+                        particle.velocityVector.components[0] = tanx * dotptan2 + normx * ((dotpnorm2 * (particle.mass - this.mass) + 2 * this.mass*dotpnorm1) / (this.mass + particle.mass));
+                        particle.velocityVector.components[1] = tany * dotptan2 + normy * ((dotpnorm2 * (particle.mass - this.mass) + 2 * this.mass*dotpnorm1) / (this.mass + particle.mass));
+                    }
+                }
+            }
         }
 
         simpleAX.set(accelerationVector.components[0] + (fx/mass) + (interfx/mass));

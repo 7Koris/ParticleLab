@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 
 public class AppController {
 
-    static boolean dragEnabled = false;
     static boolean showID = false;
     static boolean paused = false;
     static boolean disableBound = false;
@@ -56,16 +55,7 @@ public class AppController {
     private Menu helpItem1;
 
     @FXML
-    private CheckBox dragCheckbox;
-
-    @FXML
     private ChoiceBox<String> toolSelect;
-
-
-    @FXML Label dragCoeffLabel;
-
-    @FXML
-    private Slider dragSlider;
 
     @FXML
     private CheckBox pausedCheckBox;
@@ -148,13 +138,6 @@ public class AppController {
     }
 
     @FXML
-    void dragSlided(MouseEvent event) {
-        Slider dragSlider = (Slider) event.getSource();
-        PhysicsProcess.dragCoeff = dragSlider.getValue();
-        dragCoeffLabel.setText(((double)Math.round(1000*PhysicsProcess.dragCoeff)/1000)+"");
-    }
-
-    @FXML
     void resetAll(MouseEvent event) {
         Particle[] allParticles = new Particle[Particle.particles.size()];
         int i = 0;
@@ -177,12 +160,6 @@ public class AppController {
     void toggleBoundary(ActionEvent event) {
         CheckBox toggleBound = (CheckBox) event.getSource();
         disableBound = toggleBound.isSelected();
-    }
-
-    @FXML
-    void toggleDrag(ActionEvent event) {
-        CheckBox dragCheckbox = (CheckBox) event.getSource();
-        dragEnabled = dragCheckbox.isSelected();
     }
 
     @FXML
@@ -268,10 +245,7 @@ public class AppController {
         assert helpItem != null : "fx:id=\"helpItem\" was not injected: check your FXML file 'Untitled'.";
         assert toolSettingsItem != null : "fx:id=\"toolSettingsItem\" was not injected: check your FXML file 'Untitled'.";
         assert helpItem1 != null : "fx:id=\"helpItem1\" was not injected: check your FXML file 'Untitled'.";
-        assert dragCheckbox != null : "fx:id=\"dragCheckbox\" was not injected: check your FXML file 'Untitled'.";
         assert toolSelect != null : "fx:id=\"toolSelect\" was not injected: check your FXML file 'Untitled'.";
-        assert dragCoeffLabel != null : "fx:id=\"dragCoeffLabel\" was not injected: check your FXML file 'Untitled'.";
-        assert dragSlider != null : "fx:id=\"dragSlider\" was not injected: check your FXML file 'Untitled'.";
         assert pausedCheckBox != null : "fx:id=\"pausedCheckBox\" was not injected: check your FXML file 'Untitled'.";
         assert timeLabel != null : "fx:id=\"timeLabel\" was not injected: check your FXML file 'Untitled'.";
         assert resetTimeButton != null : "fx:id=\"resetTimeButton\" was not injected: check your FXML file 'Untitled'.";
@@ -297,8 +271,6 @@ public class AppController {
         assert xColumn != null : "fx:id=\"xColumn\" was not injected: check your FXML file 'Untitled'.";
         assert yColumn != null : "fx:id=\"yColumn\" was not injected: check your FXML file 'Untitled'.";
         assert simPane != null : "fx:id=\"simPane\" was not injected: check your FXML file 'Untitled'.";
-        
-        dragCoeffLabel.setText("0");
 
         toolSelect.getItems().add("Edit Particle");
         toolSelect.getItems().add("Move Particle");

@@ -49,8 +49,8 @@
             <Label layoutX="21.0" layoutY="189.0" text="Add Force Settings" />
             <TextField fx:id="fxField" layoutX="28.0" layoutY="207.0" prefHeight="26.0" prefWidth="89.0" promptText="Force-x" />
             <TextField fx:id="fyField" layoutX="28.0" layoutY="233.0" prefHeight="26.0" prefWidth="89.0" promptText="Force-y" />
-            <Label layoutX="121.0" layoutY="212.0" text="(Newtons y-axis)" />
-            <Label layoutX="121.0" layoutY="237.0" text="(Newtons x-axis)" />
+            <Label layoutX="121.0" layoutY="212.0" text="(Newtons x-axis)" />
+            <Label layoutX="121.0" layoutY="237.0" text="(Newtons y-axis)" />
             <Label layoutX="119.0" layoutY="62.0" text="(Kg)" />
             <Label layoutX="119.0" layoutY="36.0" text="(Pixels)" />
             <Label layoutX="329.0" layoutY="119.0" text="Gravitation Settings" />
