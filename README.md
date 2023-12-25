@@ -2,6 +2,8 @@
 
 A simple particle simulator for academic purposes. This program can be used to demonstrate kinematic collisions and conservation of momentum.
 
+[![Screenshot-2023-12-25-145930.png](https://i.postimg.cc/130JB1Gt/Screenshot-2023-12-25-145930.png)](https://postimg.cc/Sns6Q5tF)
+
 ## Description
 
 This was made for a high school physics final project. It is intended to demonstrate simple kinematic situations.
