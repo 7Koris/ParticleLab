@@ -25,7 +25,7 @@ This was made for a high school physics final project. It is intended to demonst
 * Simply run the jar file using Java 11 or later
 
 ## Authors
-Kamran Haq
+Koris
 
 ## License
 
